@@ -1,18 +1,13 @@
 "use strict";
 const containerTable = document.querySelector(".table");
+const containerEndMatch = document.querySelector(".container-end-match");
+const displayResult = document.querySelector("#display-result");
 const allSquares = document.querySelectorAll(".square");
-//even = X
-//odd = O
+const btnRestartGame = document.querySelector("#btn-restart-game");
 let turn = 0;
 let player = "x";
 const startGame = () => {
     turn++;
-};
-const restartGame = () => {
-    allSquares.forEach(square => {
-        square.classList.remove("circle");
-        square.classList.remove("x");
-    });
 };
 const checkTurnOfPlayer = () => {
     if (turn % 2) {
@@ -24,13 +19,14 @@ const checkTurnOfPlayer = () => {
 };
 const makeAPlay = (element) => {
     element.classList.add(player);
+    checkIfPlayerWin();
 };
-const checkIfPossibleOfPlayEnd = () => {
+const checkIfMatchDraw = () => {
     const arrayOfSquareElements = Array.from(allSquares);
     const checkIfElementHaveClass = (element) => element.classList.contains("circle") || element.classList.contains("x");
     const IfPlayMovesEnd = arrayOfSquareElements.every(element => checkIfElementHaveClass(element));
     if (IfPlayMovesEnd) {
-        alert("Draw");
+        displayContainerOfFinalMatch("Draw!");
     }
 };
 const sequencesOfWin = (player) => {
@@ -48,12 +44,26 @@ const sequencesOfWin = (player) => {
 };
 const checkIfPlayerWin = () => {
     if (sequencesOfWin("circle") || sequencesOfWin("x")) {
-        alert(`${player} ganhou`);
-        restartGame();
+        const playerMsg = player === "circle" ? "Circle" : "X";
+        displayContainerOfFinalMatch(`${playerMsg} win!`);
     }
     else {
-        checkIfPossibleOfPlayEnd();
+        checkIfMatchDraw();
     }
+    ;
+};
+const displayContainerOfFinalMatch = (result) => {
+    containerEndMatch.style.display = "block";
+    containerTable.setAttribute("style", "pointer-events:none");
+    displayResult.textContent = result;
+};
+const restartGame = () => {
+    allSquares.forEach(square => {
+        square.classList.remove("circle");
+        square.classList.remove("x");
+    });
+    containerEndMatch.style.display = "none";
+    containerTable.removeAttribute("style");
 };
 containerTable.addEventListener("click", e => {
     const element = e.target;
@@ -61,7 +71,10 @@ containerTable.addEventListener("click", e => {
         startGame();
         checkTurnOfPlayer();
         makeAPlay(element);
-        checkIfPlayerWin();
     }
+    ;
+});
+btnRestartGame.addEventListener("click", () => {
+    restartGame();
 });
 //# sourceMappingURL=main.js.map

@@ -35,3 +35,7 @@ main {
 .x::before {
   content: "X";
 }
+
+.container-end-match {
+  display: none;
+}
