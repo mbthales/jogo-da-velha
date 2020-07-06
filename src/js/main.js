@@ -45,7 +45,7 @@ const sequencesOfWin = (player) => {
 const checkIfPlayerWin = () => {
     if (sequencesOfWin("circle") || sequencesOfWin("x")) {
         const playerMsg = player === "circle" ? "Circle" : "X";
-        displayContainerOfFinalMatch(`${playerMsg} win!`);
+        displayContainerOfFinalMatch(`${playerMsg} Win!`);
     }
     else {
         checkIfMatchDraw();

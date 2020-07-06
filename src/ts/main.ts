@@ -29,9 +29,10 @@ const makeAPlay: (element: HTMLElement) => void
 
 const checkIfMatchDraw = () => {
   const arrayOfSquareElements = Array.from(allSquares);
-  const checkIfElementHaveClass = (element: HTMLElement) => 
+  const checkIfElementHaveClass = (element: HTMLElement) =>
     element.classList.contains("circle") || element.classList.contains("x");
-  const IfPlayMovesEnd = arrayOfSquareElements.every(element => checkIfElementHaveClass(element));
+  const IfPlayMovesEnd = arrayOfSquareElements.every(element =>    
+    checkIfElementHaveClass(element));
 
   if(IfPlayMovesEnd){
     displayContainerOfFinalMatch("Draw!");
@@ -53,12 +54,12 @@ const sequencesOfWin = (player: string) => {
 
   return rowOne || rowTwo || rowTree || columnOne || 
     columnTwo || columnThree || diagonalTwo || diagonalOne
-}
+};
 
 const checkIfPlayerWin = () => {
   if(sequencesOfWin("circle") || sequencesOfWin("x")){
     const playerMsg = player === "circle"? "Circle": "X";
-    displayContainerOfFinalMatch(`${playerMsg} win!`);
+    displayContainerOfFinalMatch(`${playerMsg} Win!`);
   } else{
     checkIfMatchDraw();
   };
@@ -68,7 +69,7 @@ const displayContainerOfFinalMatch = (result: string) => {
   containerEndMatch.style.display = "block";
   containerTable.setAttribute("style", "pointer-events:none");
   displayResult.textContent = result;
-}
+};
 
 const restartGame = () => {
   allSquares.forEach(square => {
