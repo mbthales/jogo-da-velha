@@ -1,103 +1,71 @@
-const containerTable = <HTMLElement>document.querySelector('.table')
-const containerEndMatch = <HTMLElement>(
-	document.querySelector('.container-end-match')
-)
-const displayResult = <HTMLElement>document.querySelector('#display-result')
-const allSquares = <NodeListOf<HTMLElement>>document.querySelectorAll('.square')
-const btnRestartGame = <HTMLElement>document.querySelector('#btn-restart-game')
-
-let turn = 0
-let player = 'x'
-
-const startGame = () => {
-	turn++
-}
-
-const checkTurnOfPlayer = () => {
-	if (turn % 2) {
-		player = 'circle'
-	} else {
-		player = 'x'
-	}
-}
-
-const makeAPlay: (element: HTMLElement) => void = (element: HTMLElement) => {
-	element.classList.add(player)
-	checkIfPlayerWin()
-}
-
-const checkIfMatchDraw = () => {
-	const arrayOfSquareElements = Array.from(allSquares)
-	const checkIfElementHaveClass = (element: HTMLElement) =>
-		element.classList.contains('circle') || element.classList.contains('x')
-	const IfPlayMovesEnd = arrayOfSquareElements.every((element) =>
-		checkIfElementHaveClass(element)
+function createGame() {
+	const boardEl = <HTMLElement>document.querySelector('[data-js="board"]')
+	const endGameEl = <HTMLElement>document.querySelector('[data-js="end-game"]')
+	const resultEl = <HTMLElement>document.querySelector('[data-js="result"]')
+	const resetEl = <HTMLElement>document.querySelector('[data-js="reset"]')
+	const boardBoxsEl = <NodeListOf<HTMLElement>>(
+		document.querySelectorAll('[data-js^="board-box"]')
 	)
 
-	if (IfPlayMovesEnd) {
-		displayContainerOfFinalMatch('Draw!')
+	const board = ['', '', '', '', '', '', '', '', '']
+	let player = 'x'
+
+	function handlePlayerMove(event: Event) {
+		const target = event.target as HTMLElement
+		const isBoardBox = target.getAttribute('data-js')?.includes('board-box')
+
+		if (isBoardBox) {
+			const boxPosition = Number(
+				target.getAttribute('data-js')?.split(' ')[1].split('-')[2]
+			)
+
+			target.innerHTML = player
+			board[boxPosition] = player
+
+			checkWinner()
+			togglePlayer()
+		}
 	}
-}
 
-const sequencesOfWin = (player: string) => {
-	const element = (position: number) =>
-		allSquares[position].classList.contains(player)
-
-	const rowOne = element(0) && element(1) && element(2)
-	const rowTwo = element(3) && element(4) && element(5)
-	const rowTree = element(6) && element(7) && element(8)
-	const columnOne = element(0) && element(3) && element(6)
-	const columnTwo = element(1) && element(4) && element(7)
-	const columnThree = element(2) && element(5) && element(8)
-	const diagonalOne = element(0) && element(4) && element(8)
-	const diagonalTwo = element(2) && element(4) && element(6)
-
-	return (
-		rowOne ||
-		rowTwo ||
-		rowTree ||
-		columnOne ||
-		columnTwo ||
-		columnThree ||
-		diagonalTwo ||
-		diagonalOne
-	)
-}
-
-const checkIfPlayerWin = () => {
-	if (sequencesOfWin('circle') || sequencesOfWin('x')) {
-		const playerMsg = player === 'circle' ? 'Circle' : 'X'
-		displayContainerOfFinalMatch(`${playerMsg} Win!`)
-	} else {
-		checkIfMatchDraw()
+	function togglePlayer() {
+		player = player === 'x' ? 'o' : 'x'
 	}
-}
 
-const displayContainerOfFinalMatch = (result: string) => {
-	containerEndMatch.style.display = 'block'
-	containerTable.setAttribute('style', 'pointer-events:none')
-	displayResult.textContent = result
-}
+	function checkWinner() {
+		const possibleWins = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6],
+		]
 
-const restartGame = () => {
-	allSquares.forEach((square) => {
-		square.classList.remove('circle')
-		square.classList.remove('x')
-	})
+		const isWinner = possibleWins.some((win) => {
+			const [a, b, c] = win
+			return board[a] && board[a] === board[b] && board[a] === board[c]
+		})
+		const isDraw = board.every((box) => box !== '')
 
-	containerEndMatch.style.display = 'none'
-	containerTable.removeAttribute('style')
-}
-
-containerTable.addEventListener('click', (e) => {
-	const element = <HTMLElement>e.target
-	if (element.className === 'square') {
-		startGame()
-		checkTurnOfPlayer()
-		makeAPlay(element)
+		if (isWinner) {
+			endGameEl.style.display = 'flex'
+			resultEl.innerHTML = `Player ${player} won!`
+		} else if (isDraw) {
+			endGameEl.style.display = 'flex'
+			resultEl.innerHTML = 'Draw!'
+		}
 	}
-})
 
-btnRestartGame.addEventListener('click', () => {
-	restartGame()
-})
+	function resetGame() {
+		board.fill('')
+		endGameEl.style.display = 'none'
+		boardBoxsEl.forEach((box) => (box.innerHTML = ''))
+	}
+
+	boardEl.addEventListener('click', handlePlayerMove)
+	resetEl.addEventListener('click', resetGame)
+}
+
+createGame()

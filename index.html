@@ -8,26 +8,31 @@
 	</head>
 	<body>
 		<main>
-			<div class="table">
+			<div class="table" data-js="board">
 				<div class="row">
-					<div class="square"></div>
-					<div class="square"></div>
-					<div class="square"></div>
+					<div class="square" data-js="board-box board-box-0"></div>
+					<div class="square" data-js="board-box board-box-1"></div>
+					<div class="square" data-js="board-box board-box-2"></div>
 				</div>
 				<div class="row">
-					<div class="square"></div>
-					<div class="square"></div>
-					<div class="square"></div>
+					<div class="square" data-js="board-box board-box-3"></div>
+					<div class="square" data-js="board-box board-box-4"></div>
+					<div class="square" data-js="board-box board-box-5"></div>
 				</div>
 				<div class="row">
-					<div class="square"></div>
-					<div class="square"></div>
-					<div class="square"></div>
+					<div class="square" data-js="board-box board-box-6"></div>
+					<div class="square" data-js="board-box board-box-7"></div>
+					<div class="square" data-js="board-box board-box-8"></div>
 				</div>
 			</div>
-			<div class="container-end-match">
-				<p class="result" id="display-result"></p>
-				<button class="btn" type="button" id="btn-restart-game">
+			<div class="container-end-match" data-js="end-game">
+				<p class="result" data-js="result"></p>
+				<button
+					class="btn"
+					type="button"
+					id="btn-restart-game"
+					data-js="reset"
+				>
 					Restart
 				</button>
 			</div>
