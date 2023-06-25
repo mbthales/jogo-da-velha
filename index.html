@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="src/css/style.css">
-</head>
-<body>
-  <main>
-    <div class="table">
-      <div class="row">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="table">
+        <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
       </div>
-      <div class="row">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="container-end-match">
+        <p class="result" id="display-result"></p>
+        <button class="btn" type="button" id="btn-restart-game">Restart</button>
       </div>
-      <div class="row">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-      </div>
-    </div>
-    <div class="container-end-match">
-      <p class="result" id="display-result"></p>
-      <button class="btn" type="button" id="btn-restart-game">Restart</button>
-    </div>
-  </main>
-  <script src="src/js/main.js"></script>
-</body>
+    </main>
+    <script type="module" src="src/main.ts"></script>
+  </body>
 </html>

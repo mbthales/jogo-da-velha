@@ -23,7 +23,7 @@ main {
 }
 
 .row {
-  display: flex
+  display: flex;
 }
 
 .square {
