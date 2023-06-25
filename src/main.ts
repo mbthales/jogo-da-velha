@@ -62,7 +62,10 @@ function createGame() {
 	function resetGame() {
 		board.fill('')
 		endGameEl.style.display = 'none'
-		boardBoxsEl.forEach((box) => (box.innerHTML = ''))
+		boardBoxsEl.forEach((box) => {
+			const boxTextEl = <HTMLElement>box.childNodes[1]
+			boxTextEl.innerHTML = ''
+		})
 	}
 
 	boardEl.addEventListener('click', handlePlayerMove)
