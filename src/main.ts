@@ -19,7 +19,8 @@ function createGame() {
 				target.getAttribute('data-js')?.split(' ')[1].split('-')[2]
 			)
 
-			target.innerHTML = player
+			const boxTextEl = <HTMLElement>target.childNodes[1]
+			boxTextEl.innerHTML = player
 			board[boxPosition] = player
 
 			checkWinner()

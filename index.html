@@ -6,34 +6,89 @@
 		<title>Tic Tac Toe</title>
 		<link rel="stylesheet" href="src/style.css" />
 	</head>
-	<body>
-		<main>
-			<div class="table" data-js="board">
-				<div class="row">
-					<div class="square" data-js="board-box board-box-0"></div>
-					<div class="square" data-js="board-box board-box-1"></div>
-					<div class="square" data-js="board-box board-box-2"></div>
+	<body
+		class="flex h-screen w-screen items-center justify-center bg-stone-900"
+	>
+		<main class="h-2/4 w-full">
+			<div
+				class="mx-auto flex h-full w-11/12 max-w-sm flex-col justify-center"
+				data-js="board"
+			>
+				<div class="flex h-[25%] w-full">
+					<div
+						class="flex h-full w-full items-center justify-center border-4 border-l-0 border-t-0 border-neutral-400 font-['Poppins'] text-6xl text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-0"
+					>
+						<p></p>
+					</div>
+					<div
+						class="flex w-full items-center justify-center border-4 border-t-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-1"
+					>
+						<p></p>
+					</div>
+					<div
+						class="flex w-full items-center justify-center border-4 border-r-0 border-t-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-2"
+					>
+						<p></p>
+					</div>
 				</div>
-				<div class="row">
-					<div class="square" data-js="board-box board-box-3"></div>
-					<div class="square" data-js="board-box board-box-4"></div>
-					<div class="square" data-js="board-box board-box-5"></div>
+				<div class="flex h-[25%] w-full">
+					<div
+						class="flex w-full items-center justify-center border-4 border-l-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-3"
+					>
+						<p></p>
+					</div>
+					<div
+						class="flex w-full items-center justify-center border-4 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-4"
+					>
+						<p></p>
+					</div>
+					<div
+						class="flex w-full items-center justify-center border-4 border-r-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-5"
+					>
+						<p></p>
+					</div>
 				</div>
-				<div class="row">
-					<div class="square" data-js="board-box board-box-6"></div>
-					<div class="square" data-js="board-box board-box-7"></div>
-					<div class="square" data-js="board-box board-box-8"></div>
+				<div class="flex h-[25%] w-full">
+					<div
+						class="flex w-full items-center justify-center border-4 border-b-0 border-l-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-6"
+					>
+						<p></p>
+					</div>
+					<div
+						class="flex w-full items-center justify-center border-4 border-b-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-7"
+					>
+						<p></p>
+					</div>
+					<div
+						class="flex w-full items-center justify-center border-4 border-b-0 border-r-0 border-neutral-400 text-center font-['Poppins'] text-6xl leading-[180%] text-neutral-400 hover:cursor-pointer"
+						data-js="board-box board-box-8"
+					>
+						<p></p>
+					</div>
 				</div>
 			</div>
-			<div class="container-end-match" data-js="end-game">
-				<p class="result" data-js="result"></p>
+			<div
+				class="absolute top-0 hidden h-full w-full flex-col items-center justify-center bg-stone-900 opacity-90"
+				data-js="end-game"
+			>
+				<p
+					class="result mb-8 text-center font-['Poppins'] text-6xl text-neutral-400"
+					data-js="result"
+				></p>
 				<button
-					class="btn"
+					class="rounded border-4 border-neutral-400 px-6 py-2 font-['Poppins'] text-xl text-neutral-400"
 					type="button"
-					id="btn-restart-game"
 					data-js="reset"
 				>
-					Restart
+					restart
 				</button>
 			</div>
 		</main>
