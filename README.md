@@ -25,7 +25,7 @@ A Tic Tac Toe game to play with your friend.
 
 ### Running <a name="running"></a>
 
--  Run `yarn start` or `npm start`
+-  Run `yarn dev` or `npm run dev`
 
 ## Build With <a name="build_with"></a>
 
